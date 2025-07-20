@@ -22,8 +22,8 @@ int binary_search(int arr[], int low, int high, int key) {
 
 /* Tester & plotter: writes best/worst case counts to separate files */
 void plotter(void) {
-    FILE *fb = fopen("binsearch_best.txt",  "w");
-    FILE *fw = fopen("binsearch_worst.txt", "w");
+    FILE *fb = fopen("binsearch_best.txt",  "a");
+    FILE *fw = fopen("binsearch_worst.txt", "a");
     if (!fb || !fw) {
         exit(EXIT_FAILURE);
     }
