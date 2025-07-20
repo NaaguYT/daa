@@ -3,9 +3,6 @@
 #include <string.h>
 #include <time.h>
 
-#define TEXT_LEN   1000
-#define MIN_P      10
-#define MAX_P      1000
 
 int op_count;
 
@@ -39,18 +36,18 @@ void plotter(void) {
 
         /* Best case: pattern of all 'a's */
         for (int j = 0; j < i; j++) pat[j] = 'a';
-        bf_match(text, pat, TEXT_LEN, i);
+        bf_match(text, pat, 1000, i);
         fprintf(fb, "%d\t%d\n", i, op_count);
 
         /* Worst case: last char mismatches to force full compare */
         for (int j = 0; j < i-1; j++) pat[j] = 'a';
         pat[i-1] = 'b';
-        bf_match(text, pat, TEXT_LEN, i);
+        bf_match(text, pat, 1000, i);
         fprintf(fw, "%d\t%d\n", i, op_count);
 
         /* Average case: random small alphabet {'a','b','c'} */
         for (int j = 0; j < i; j++) pat[j] = 'a' + (rand() % 3);
-        bf_match(text, pat, TEXT_LEN, i);
+        bf_match(text, pat, 1000, i);
         fprintf(fa, "%d\t%d\n", i, op_count);
 
         free(pat);
