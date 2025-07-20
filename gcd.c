@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,7 +13,7 @@ float euclid(int m, int n) {
         m = n;
         n = r;
     }
-    return count;
+    return count; // m is the GCD
 }
 
 float consec(int m, int n) {
@@ -34,7 +33,7 @@ float consec(int m, int n) {
             min -= 1;
         }
     }
-    return count;
+    return count; // min is the GCD
 }
 
 float modified(int m, int n) {
