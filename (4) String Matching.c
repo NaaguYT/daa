@@ -9,9 +9,9 @@
 
 int op_count;
 
-int bf_match(const char text[], const char pat[], int n, int m) {
+int bf_match(char text[], char pat[], int n, int m) {
     op_count = 0;
-    for (int i = 0; i < n - m + 1; i++) {
+    for (int i = 0; i <= n - m; i++) {
         int j = 0;
         while (j < m) {
             op_count++;                 /* one comparison */
@@ -61,7 +61,7 @@ void plotter(void) {
     fclose(fa);
 }
 
-void interactive_demo(void) {
+void tester(void) {
     char text[1001], pat[1001];
     printf("Enter text (no spaces): ");
     scanf("%1000s", text);
@@ -88,6 +88,6 @@ void interactive_demo(void) {
 
 int main(void) {
     plotter();
-    interactive_demo();
+    tester();
     return 0;
 }
