@@ -28,7 +28,6 @@ void plotter(void) {
 
     for (int n = 10; n <= 100; n += 10) {
         int *arr = malloc(n * sizeof(int));
-        if (!arr) { exit(EXIT_FAILURE); }
 
         /* General case: random (even you can give ascending or descending array too */
         for (int i = 0; i < n; ++i) arr[i] = rand() % n;
