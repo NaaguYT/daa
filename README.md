@@ -1,5 +1,5 @@
 ## Algorithms  
-** 1. Euclid’s GCD Algorithms**  
+** 1. Euclid’s GCD Algorithms **  
 Algorithms and Time Complexities for GCD Methods
 
 1. Euclid’s Division Algorithm  
