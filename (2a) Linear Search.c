@@ -52,15 +52,12 @@ int main(void) {
     /* 2. Optionally, perform an tester */
     int n;
     printf("Enter number of elements: ");
-    if (scanf("%d", &n) != 1 || n <= 0) {
+    scanf("%d", &n);
+    if (n <= 0) {
         printf("Invalid size.\n");
         return 1;
     }
     int *arr = malloc(n * sizeof(int));
-    if (!arr) {
-        perror("malloc");
-        return 1;
-    }
     printf("Enter %d array elements:\n", n);
     for (int i = 0; i < n; ++i) {
         scanf("%d", &arr[i]);
