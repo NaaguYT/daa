@@ -21,14 +21,10 @@ void plotter(void) {
     FILE *fb = fopen("is_best.txt",  "a");
     FILE *fw = fopen("is_worst.txt", "a");
     FILE *fa = fopen("is_avg.txt",   "a");
-    if (!fb || !fw || !fa) {
-        exit(EXIT_FAILURE);
-    }
     srand(time(NULL));
 
     for (int n = 10; n <= 100; n += 10) {
         int *arr = malloc(n * sizeof(int));
-        if (!arr) { exit(EXIT_FAILURE); }
 
         /* Best case: already sorted ascending */
         for (int i = 0; i < n; ++i) arr[i] = i + 1;
@@ -56,15 +52,15 @@ void plotter(void) {
     fclose(fa);
 }
 
-void interactive_demo(void) {
+void tester(void) {
     int n;
     printf("Enter number of elements: ");
-    if (scanf("%d", &n) != 1 || n <= 0) {
+    scanf("%d", &n);
+    if (n <= 0) {
         printf("Invalid size.\n");
         return;
     }
     int *arr = malloc(n * sizeof(int));
-    if (!arr) { return; }
 
     printf("Enter %d elements:\n", n);
     for (int i = 0; i < n; ++i) {
@@ -84,6 +80,6 @@ void interactive_demo(void) {
 
 int main(void) {
     plotter();
-    interactive_demo();
+    tester();
     return 0;
 }
