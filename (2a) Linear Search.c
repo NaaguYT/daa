@@ -19,18 +19,11 @@ int linear_search(int arr[], int n, int key) {
 void plotter(void) {
     FILE *f_best = fopen("linsearch_best.txt", "a");
     FILE *f_worst = fopen("linsearch_worst.txt", "a");
-    if (!f_best || !f_worst) {
-        perror("fopen");
-        exit(EXIT_FAILURE);
-    }
     srand(time(NULL));
 
     for (int n = 10; n <= 100; n += 10) {
         int *arr = malloc(n * sizeof(int));
-        if (!arr) {
-            perror("malloc");
-            exit(EXIT_FAILURE);
-        }
+        
         /* Fill with random values 0..n-1 */
         for (int i = 0; i < n; ++i) {
             arr[i] = rand() % n;
