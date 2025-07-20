@@ -4,7 +4,6 @@
 
 int op_count;
 
-/* Bubble Sort with early exit; returns number of comparisons */
 int bubble_sort(int arr[], int n) {
     op_count = 0;
     for (int i = 0; i < n - 1; ++i) {
@@ -23,7 +22,6 @@ int bubble_sort(int arr[], int n) {
     return op_count;
 }
 
-/* Tester/Plotter: generates best/worst/avg case data */
 void plotter(void) {
     FILE *fb = fopen("bb_best.txt",  "a");
     FILE *fw = fopen("bb_worst.txt", "a");
@@ -61,7 +59,6 @@ void plotter(void) {
     fclose(fa);
 }
 
-/* Tester */
 void Tester(void) {
     int n;
     printf("Enter number of elements: ");
@@ -87,11 +84,7 @@ void Tester(void) {
 }
 
 int main(void) {
-    /* 1) Generate data files for plotting */
     plotter();
-
-    /* 2) Run interactive demo */
-    interactive_demo();
-
+    Tester();
     return 0;
 }
