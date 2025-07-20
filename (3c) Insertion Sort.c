@@ -18,9 +18,9 @@ void insertion_sort(int arr[], int n) {
 }
 
 void plotter(void) {
-    FILE *fb = fopen("is_best.txt",  "w");
-    FILE *fw = fopen("is_worst.txt", "w");
-    FILE *fa = fopen("is_avg.txt",   "w");
+    FILE *fb = fopen("is_best.txt",  "a");
+    FILE *fw = fopen("is_worst.txt", "a");
+    FILE *fa = fopen("is_avg.txt",   "a");
     if (!fb || !fw || !fa) {
         exit(EXIT_FAILURE);
     }
