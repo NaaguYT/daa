@@ -20,7 +20,7 @@ void bfs(int n, int startVertex) {
         startVertex = queue[++front];
         int parentNode = parent[front];
 
-        // printf("--> %c ", startVertex + 65); // For testing traversal
+        printf("--> %c ", startVertex + 65); // For testing traversal
 
         for (int i = 0; i < n; i++) {
             orderCount++;
