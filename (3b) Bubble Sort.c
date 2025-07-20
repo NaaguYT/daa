@@ -7,7 +7,7 @@ int op_count;
 /* Bubble Sort with early exit; returns number of comparisons */
 int bubble_sort(int arr[], int n) {
     op_count = 0;
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n - 1; ++i) {
         int swapped = 0;
         for (int j = 0; j < n - i - 1; ++j) {
             op_count++;  /* comparison */
