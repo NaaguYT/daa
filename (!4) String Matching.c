@@ -67,16 +67,8 @@ void tester(void) {
 
     int n = strlen(text), m = strlen(pat);
     op_count = 0;
-    int found = 0;
-    for (int i = 0; i <= n - m; i++) {
-        int j = 0;
-        while (j < m) {
-            op_count++;
-            if (pat[j] != text[i+j]) break;
-            j++;
-        }
-        if (j == m) { found = 1; break; }
-    }
+    int found = bf_match(text, pat, n, m);
+
     if (found)
         printf("Pattern found (comparisons: %d)\n", op_count);
     else
