@@ -1,21 +1,47 @@
 ## 1. Euclid’s GCD Algorithms  
 **Algorithms**  
-- **Consecutive Integer Checking**  
-  - Let t = min(m,n); while t>0, test if t divides both m,n; decrement t.  
-  - *Ops counted*: one comparison per t, two modulo ops per test.  
-  - *Worst-case*: Θ(n) when m,n≈n and only t=1 works.  
-- **Modified Euclid (Division)**  
-  - While n≠0, compute r = m mod n; set m←n,n←r.  
-  - *Ops counted*: one comparison and one modulo per iteration.  
-  - *Worst-case*: Θ(log n) by Euclid’s analysis.  
+Algorithms and Time Complexities for GCD Methods
 
-**Comparative Analysis**  
-- **Range of inputs**: sizes from 100 → 10 000 in steps of 500.  
-- **Trials**: 10 random pairs per size; record min/avg/max op-counts.  
-- **Expected Plot**:  
-  - X-axis: input magnitude  
-  - Y-axis: basic ops  
-  - Two curves: straight line (consecutive) vs shallow log curve (Euclid).  
+1. Euclid’s Division Algorithm  
+   -  Algorithm  
+     – While n ≠ 0: compute r = m mod n; set m ← n; n ← r.  
+   -  Ops counted  
+     – One comparison (n≠0) and one modulo per iteration; plus assignments.  
+   -  Best-case: Θ(1) (when initial n divides m immediately)  
+   -  Worst-case: Θ(log min(m,n)) (Euclid’s bound)  
+   -  Average-case: Θ(log n)
+
+2. Consecutive-Integer Checking  
+   -  Algorithm  
+     – Let t = min(m,n).  
+     – While t > 0: test if both m mod t == 0 and n mod t == 0; if so, return t; else t--.  
+   -  Ops counted  
+     – One loop check per t, two modulo tests per t.  
+   -  Best-case: Θ(1) (when m=n or one divides the other at t = min)  
+   -  Worst-case: Θ(n) (when the only common divisor is 1)  
+   -  Average-case: Θ(n)
+
+3. Subtractive (Modified Euclid) Algorithm  
+   -  Algorithm  
+     – While m ≠ n: subtract the smaller from the larger.  
+   -  Ops counted  
+     – One comparison and one subtraction per iteration.  
+   -  Best-case: Θ(1) (when m=n at start)  
+   -  Worst-case: Θ(m + n) in very unbalanced cases (but generally Θ(n²) worst)  
+   -  Average-case: Θ(n log n) (rough heuristic)
+
+Comparative Analysis  
+- Range of inputs: choose N from 100 to 10 000 in steps of 500.  
+- Trials per N: 10 random pairs (m,n).  
+- Record minimum and maximum operation counts for each method.  
+
+Expected Plot  
+- X-axis: maximum input value N.  
+- Y-axis: basic operations.  
+- Curves:  
+  -  Euclid: shallow logarithmic rise (Θ(log N)).  
+  -  Consecutive: linear rise (Θ(N)).  
+  -  Subtractive: intermediate slope, steeper than logarithmic but shallower than pure linear in many cases.
 
 ## 2. Searching Algorithms  
 ### a) Sequential Search  
