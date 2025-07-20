@@ -17,8 +17,8 @@ int linear_search(int arr[], int n, int key) {
 
 /* Plotter: writes best-case and worst-case data to separate files */
 void plotter(void) {
-    FILE *f_best = fopen("linsearch_best.txt", "w");
-    FILE *f_worst = fopen("linsearch_worst.txt", "w");
+    FILE *f_best = fopen("linsearch_best.txt", "a");
+    FILE *f_worst = fopen("linsearch_worst.txt", "a");
     if (!f_best || !f_worst) {
         perror("fopen");
         exit(EXIT_FAILURE);
