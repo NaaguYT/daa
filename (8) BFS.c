@@ -1,15 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 100
-
 int orderCount = 0;
 int isCyclic = 0;
 int visitedCount = 0;
-int graph[MAX][MAX], visited[MAX];
+int graph[100][100], visited[100];
 
-void bfs(int totalVertices, int startVertex) {
-    int queue[MAX], parent[MAX];
+void bfs(int n, int startVertex) {
+    int queue[100], parent[100];
     int front = -1, rear = -1;
 
     visited[startVertex] = 1;
@@ -24,19 +22,19 @@ void bfs(int totalVertices, int startVertex) {
 
         // printf("--> %c ", startVertex + 65); // For testing traversal
 
-        for (int neighbor = 0; neighbor < totalVertices; neighbor++) {
+        for (int i = 0; i < n; i++) {
             orderCount++;
 
-            if (graph[startVertex][neighbor]) {
-                if (visited[neighbor]) {
-                    if (neighbor != parentNode) {
+            if (graph[startVertex][i]) {
+                if (visited[i]) {
+                    if (i != parentNode) {
                         isCyclic = 1;
                     }
                 } else {
-                    visited[neighbor] = 1;
+                    visited[i] = 1;
                     visitedCount++;
 
-                    queue[++rear] = neighbor;
+                    queue[++rear] = i;
                     parent[rear] = startVertex;
                 }
             }
@@ -45,21 +43,21 @@ void bfs(int totalVertices, int startVertex) {
 }
 
 void tester() {
-    int totalVertices;
+    int n;
     printf("Enter the number of vertices:\n");
-    scanf("%d", &totalVertices);
+    scanf("%d", &n);
 
     printf("Enter the adjacency matrix:\n");
-    for (int row = 0; row < totalVertices; row++) {
-        for (int col = 0; col < totalVertices; col++) {
+    for (int row = 0; row < n; row++) {
+        for (int col = 0; col < n; col++) {
             scanf("%d", &graph[row][col]);
         }
         visited[row] = 0;
     }
 
     printf("The adjacency matrix:\n");
-    for (int row = 0; row < totalVertices; row++) {
-        for (int col = 0; col < totalVertices; col++) {
+    for (int row = 0; row < n; row++) {
+        for (int col = 0; col < n; col++) {
             printf("%d ", graph[row][col]);
         }
         printf("\n");
@@ -68,16 +66,16 @@ void tester() {
     isCyclic = 0;
     visitedCount = 0;
 
-    bfs(totalVertices, 0);
+    bfs(n, 0);
 
-    if (visitedCount == totalVertices) {
+    if (visitedCount == n) {
         printf("\nThe graph is connected\n");
     } else {
         printf("\nThe graph is not connected\n");
 
-        for (int vertex = 1; vertex < totalVertices; vertex++) {
+        for (int vertex = 1; vertex < n; vertex++) {
             if (!visited[vertex]) {
-                bfs(totalVertices, vertex);
+                bfs(n, vertex);
             }
         }
     }
