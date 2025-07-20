@@ -22,14 +22,13 @@ void plotter(void) {
     FILE *fw = fopen("is_worst.txt", "w");
     FILE *fa = fopen("is_avg.txt",   "w");
     if (!fb || !fw || !fa) {
-        perror("fopen");
         exit(EXIT_FAILURE);
     }
     srand((unsigned)time(NULL));
 
     for (int n = 10; n <= 100; n += 10) {
         int *arr = malloc(n * sizeof(int));
-        if (!arr) { perror("malloc"); exit(EXIT_FAILURE); }
+        if (!arr) { exit(EXIT_FAILURE); }
 
         /* Best case: already sorted ascending */
         for (int i = 0; i < n; ++i) arr[i] = i + 1;
