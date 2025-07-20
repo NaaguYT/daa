@@ -1,7 +1,3 @@
-# Comprehensive Notes for DAA Lab Syllabus
-
-Sunday, July 20, 2025
-
 ## 1. Euclid’s GCD Algorithms  
 **Algorithms**  
 - **Consecutive Integer Checking**  
