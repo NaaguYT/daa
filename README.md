@@ -1,4 +1,4 @@
-##Algorithms  
+## Algorithms  
 ** 1. Euclid’s GCD Algorithms**  
 Algorithms and Time Complexities for GCD Methods
 
