@@ -24,9 +24,6 @@ void selection_sort(int arr[], int n) {
 /* Tester/Plotter: generates best/worst/avg counts */
 void plotter(void) {
     FILE *f = fopen("s.txt", "a");
-    if (!f) {
-        exit(EXIT_FAILURE);
-    }
     srand(time(NULL));
 
     for (int n = 10; n <= 100; n += 10) {
@@ -48,13 +45,13 @@ void plotter(void) {
 void tester(void) {
     int n;
     printf("Enter number of elements: ");
-    if (scanf("%d", &n) != 1 || n <= 0) {
+    scanf("%d", &n);
+    if (n <= 0) {
         printf("Invalid input.\n");
         return;
     }
     int *arr = malloc(n * sizeof(int));
-    if (!arr) { perror("malloc"); return; }
-
+    
     printf("Enter %d elements:\n", n);
     for (int i = 0; i < n; ++i) {
         scanf("%d", &arr[i]);
@@ -75,7 +72,7 @@ int main(void) {
     plotter();
 
     /* 2) Run interactive demo */
-    interactive_demo();
+    tester();
 
     return 0;
 }
