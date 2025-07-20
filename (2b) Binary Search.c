@@ -24,12 +24,8 @@ int binary_search(int arr[], int low, int high, int key) {
 void plotter(void) {
     FILE *fb = fopen("binsearch_best.txt",  "a");
     FILE *fw = fopen("binsearch_worst.txt", "a");
-    if (!fb || !fw) {
-        exit(EXIT_FAILURE);
-    }
     for (int n = 2; n <= 1024; n *= 2) {
         int *arr = malloc(n * sizeof(int));
-        if (!arr) { exit(EXIT_FAILURE); }
         /* Fill with sorted values 1..n */
         for (int i = 0; i < n; ++i) arr[i] = i + 1;
 
@@ -53,13 +49,13 @@ void plotter(void) {
 void tester(void) {
     int n;
     printf("Enter number of elements: ");
-    if (scanf("%d", &n) != 1 || n <= 0) {
+    scanf("%d", &n);
+    if (n <= 0) {
         printf("Invalid size.\n");
         return;
     }
     int *arr = malloc(n * sizeof(int));
-    if (!arr) { perror("malloc"); return; }
-
+    
     printf("Enter %d elements in increasing order:\n", n);
     for (int i = 0; i < n; ++i) {
         scanf("%d", &arr[i]);
@@ -83,7 +79,7 @@ int main(void) {
     plotter();
 
     /* Then allow an interactive search demo */
-    interactive_demo();
+    tester();
 
     return 0;
 }
