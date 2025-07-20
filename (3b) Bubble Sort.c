@@ -48,6 +48,11 @@ void plotter(void) {
         bubble_sort(arr, n);
         fprintf(fw, "%d\t%d\n", n, op_count);
 
+        /* Average case: random */
+        for (int i = 0; i < n; ++i) arr[i] = rand() % n;
+        bubble_sort(arr, n);
+        fprintf(fa, "%d\t%d\n", n, op_count);
+        
         free(arr);
     }
 
