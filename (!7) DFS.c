@@ -1,132 +1,129 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-int orderCount = 0;
-int isCyclic = 0;
-int visitedCount = 0;
-int graph[100][100], visited[100];
-
-void dfs(int totalVertices, int currentVertex, int parentVertex) {
-    visited[currentVertex] = 1;
-    visitedCount++;
-    printf("--> %c ", currentVertex + 65); // Debug output in letter format
-
-    for (int neighbor = 0; neighbor < totalVertices; neighbor++) {
-        orderCount++;
-        if (neighbor != parentVertex && graph[currentVertex][neighbor] && visited[neighbor])
-            isCyclic = 1;
-
-        if (graph[currentVertex][neighbor] && visited[neighbor] == 0)
-            dfs(totalVertices, neighbor, currentVertex);
-    }
+#include<stdio.h>
+#include<stdlib.h>
+int ordercount=0;
+int cyclic=0;
+int count=0;
+int graph[100][100],visited[100];
+void dfs(int n, int start, int parent) {
+ 	visited[start] = 1;
+ 	count++;
+	printf("--> %c ", start+65);
+	// print statement only for tester
+   for(int i=0; i<n; i++) {
+  	ordercount++;
+   if(i!=parent && graph[start][i] && visited[i])
+ 	cyclic = 1;
+   if(graph[start][i] && visited[i]==0)
+ 	dfs(n, i, start);
+ }
 }
-
-void tester() {
-    int n;
-    printf("Enter the number of vertices:\n");
-    scanf("%d", &n);
-
-    printf("Enter the adjacency matrix:\n");
-    for (int row = 0; row < n; row++) {
-        for (int col = 0; col < n; col++) {
-            scanf("%d", &graph[row][col]);
-        }
-        visited[row] = 0;
-    }
-
-    printf("The adjacency matrix:\n");
-    for (int row = 0; row < n; row++) {
-        for (int col = 0; col < n; col++) {
-            printf("%d ", graph[row][col]);
-        }
-        printf("\n");
-    }
-
-    isCyclic = 0;
-    visitedCount = 0;
-
-    dfs(n, 0, -1);
-
-    if (n == visitedCount)
-        printf("\nThe graph is connected\n");
-    else {
-        printf("\nThe graph is not connected\n");
-
-        for (int vertex = 1; vertex < n; vertex++) {
-            if (!visited[vertex])
-                dfs(n, vertex, -1);
-        }
-    }
-
-    if (isCyclic)
-        printf("\nThe graph is cyclic\n");
-    else
-        printf("\nThe graph is acyclic\n");
-}
-
-void plotter(int isBestCase) {
-    FILE* bestFile = fopen("DFS_Best_Matrix.txt", "a");
-    FILE* worstFile = fopen("DFS_Worst_Matrix.txt", "a");
-
-    for (int vertices = 1; vertices <= 10; vertices++) {
-        // Reset graph
-        for (int i = 0; i < vertices; i++) {
-            for (int j = 0; j < vertices; j++)
-                graph[i][j] = 0;
-        }
-
-        if (!isBestCase) {  // Worst case (Dense Graph)
-            for (int i = 0; i < vertices; i++) {
-                for (int j = 0; j < vertices; j++) {
-                    if (i != j)
-                        graph[i][j] = 1;
+void tester()
+{
+        int n;
+        printf("Enter the number of vertices : \n");
+        scanf("%d",&n);
+        int start;
+        printf("Enter the adjacency matrix \n");
+        for(int i=0;i<n;i++)
+        {
+                for(int j=0;j<n;j++)
+                {
+                        scanf("%d",&graph[i][j]);
                 }
-            }
-        } else {  // Best case (Linear Chain)
-            for (int i = 0; i < vertices - 1; i++) {
-                graph[i][i + 1] = 1;
-            }
+                visited[i]=0;
         }
-
-        for (int i = 0; i < vertices; i++)
-            visited[i] = 0;
-
-        visitedCount = 0;
-        orderCount = 0;
-
-        for (int i = 0; i < vertices; i++) {
-            if (!visited[i])
-                dfs(vertices, i, -1);
+        printf("The adjacency matrix \n");
+        for(int i=0;i<n;i++)
+        {
+                for(int j=0;j<n;j++)
+                {
+                        printf("%d ",graph[i][j]);
+                }
+                printf("\n");
         }
-
-        if (isBestCase)
-            fprintf(bestFile, "%d\t%d\n", vertices, orderCount);
+        cyclic=0;
+        count=0;
+        dfs(n,0,-1);
+        if(n==count)
+                printf("\nThe graph is connected\n");
         else
-            fprintf(worstFile, "%d\t%d\n", vertices, orderCount);
-    }
+        {
+                printf("\nThe graph is not connected\n");
+                start=1;
+                while(n!=count)
+                {
+                        if(visited[start]!=1)
+                        {
+                                dfs(n,start,-1);
+                        }
+                        start++;
+                }
+        }
+        if(cyclic)
+                printf("\nThe graph is cyclic\n");
+        else
+                printf("\nThe graph is acyclic\n");
 
-    fclose(bestFile);
-    fclose(worstFile);
 }
 
-int main() {
-    while (1) {
-        int choice;
-        printf("Enter your choice:\n1. To Test\n2. To Plot\nOther to Exit\n");
-        scanf("%d", &choice);
+void plotter(int k)
+{
+    FILE* f1 = fopen("DFS_Best_Matrix.txt", "a");
+    FILE* f2 = fopen("DFS_Worst_Matrix.txt", "a");
+    int v;
 
-        switch (choice) {
-            case 1:
-                tester();
-                break;
-            case 2:
-                for (int caseType = 0; caseType < 2; caseType++)
-                    plotter(caseType);
-                break;
-            default:
-                exit(0);
+    for (int i = 1; i <= 10; i++) {
+        v = i;
+
+        
+        if (k == 0) 
+	{  
+            for (int x = 0; x < v; x++)
+                for (int y = 0; y < v; y++)
+                    graph[x][y] = (x != y) ? 1 : 0;
+        } 
+	else 
+	{  
+            for (int x = 0; x < v; x++)
+                for (int y = 0; y < v; y++)
+                    graph[x][y] = 0;
+            for (int x = 0; x < v - 1; x++)
+                graph[x][x + 1] = 1;
         }
+        for (int x = 0; x < v; x++)
+            visited[x] = 0;
+
+        count = 0;
+        ordercount = 0;
+        for (int x = 0; x < v; x++) {
+            if (!visited[x])
+                dfs(v, x, -1);
+        }
+        if (k == 0)
+            fprintf(f2, "%d\t%d\n", v, ordercount);
+        else
+            fprintf(f1, "%d\t%d\n", v, ordercount);
     }
 
-    return 0;
+    fclose(f1);
+    fclose(f2);
+}
+
+void main()
+{
+        for(;;)
+        {
+                int key;
+                printf("Enter your choice:\n1.To Test\n2.To Plot\nOther to exit\n");
+                scanf("%d",&key);
+                switch(key)
+                {
+                        case 1: tester();
+                                break;
+                        case 2: for(int i=0;i<2;i++)
+                                        plotter(i);
+                                break;
+                        default: exit(1);
+                }
+        }
 }
