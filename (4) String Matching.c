@@ -26,9 +26,9 @@ int bf_match(const char text[], const char pat[], int n, int m) {
     return 0;                           /* not found */
 }
 void plotter(void) {
-    FILE *fb = fopen("str_best.txt",  "w");
-    FILE *fw = fopen("str_worst.txt", "w");
-    FILE *fa = fopen("str_avg.txt",   "w");
+    FILE *fb = fopen("str_best.txt",  "a");
+    FILE *fw = fopen("str_worst.txt", "a");
+    FILE *fa = fopen("str_avg.txt",   "a");
 
     char *text = malloc(1000*sizeof(char));
     for(int i=0;i<1000;i++)
