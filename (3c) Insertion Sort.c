@@ -24,7 +24,7 @@ void plotter(void) {
     if (!fb || !fw || !fa) {
         exit(EXIT_FAILURE);
     }
-    srand((unsigned)time(NULL));
+    srand(time(NULL));
 
     for (int n = 10; n <= 100; n += 10) {
         int *arr = malloc(n * sizeof(int));
@@ -64,7 +64,7 @@ void interactive_demo(void) {
         return;
     }
     int *arr = malloc(n * sizeof(int));
-    if (!arr) { perror("malloc"); return; }
+    if (!arr) { return; }
 
     printf("Enter %d elements:\n", n);
     for (int i = 0; i < n; ++i) {
