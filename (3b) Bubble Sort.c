@@ -26,15 +26,10 @@ void plotter(void) {
     FILE *fb = fopen("bb_best.txt",  "a");
     FILE *fw = fopen("bb_worst.txt", "a");
     FILE *fa = fopen("bb_avg.txt",   "a");
-    if (!fb || !fw || !fa) {
-        perror("fopen");
-        exit(EXIT_FAILURE);
-    }
     srand(time(NULL));
 
     for (int n = 10; n <= 100; n += 10) {
         int *arr = malloc(n * sizeof(int));
-        if (!arr) { perror("malloc"); exit(EXIT_FAILURE); }
 
         /* Best case: already sorted */
         for (int i = 0; i < n; ++i) arr[i] = i + 1;
@@ -62,13 +57,13 @@ void plotter(void) {
 void Tester(void) {
     int n;
     printf("Enter number of elements: ");
-    if (scanf("%d", &n) != 1 || n <= 0) {
+    scanf("%d", &n);
+    if (n <= 0) {
         printf("Invalid size.\n");
         return;
     }
     int *arr = malloc(n * sizeof(int));
-    if (!arr) { perror("malloc"); return; }
-
+    
     printf("Enter %d array elements:\n", n);
     for (int i = 0; i < n; ++i) {
         scanf("%d", &arr[i]);
