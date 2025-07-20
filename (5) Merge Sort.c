@@ -74,9 +74,9 @@ void worst(int arr[], int beg, int end) {
 
 
 void plotter() {
-    FILE *fb = fopen("ms_best.txt",  "w");
-    FILE *fw = fopen("ms_worst.txt", "w");
-    FILE *fa = fopen("ms_avg.txt",   "w");
+    FILE *fb = fopen("ms_best.txt",  "a");
+    FILE *fw = fopen("ms_worst.txt", "a");
+    FILE *fa = fopen("ms_avg.txt",   "a");
     srand(time(NULL));
     for (int n = 2; n <= 1024; n *= 2) {
         int *arr = malloc(n * sizeof(int));
