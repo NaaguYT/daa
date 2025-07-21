@@ -1,9 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-int ordercount=0;
-int cyclic=0;
-int count=0;
-int graph[100][100],visited[100];
+
+int ordercount = 0, cyclic = 0, count = 0, graph[100][100], visited[100];
+
 void dfs(int n, int start, int parent) {
  	visited[start] = 1;
  	count++;
@@ -33,6 +32,7 @@ void tester()
                 }
                 visited[i]=0;
         }
+
         printf("The adjacency matrix \n");
         for(int i=0;i<n;i++)
         {

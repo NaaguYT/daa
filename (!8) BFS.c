@@ -26,8 +26,10 @@ void bfs(int n, int startVertex) {
             orderCount++;
 
             if (graph[startVertex][i]) {
-                if (visited[i] && i != parentNode) {
-                    isCyclic = 1;
+                if (visited[i]) {
+                    if ( i != parentNode) {
+                        isCyclic = 1;
+                    }
                 } else {
                     visited[i] = 1;
                     visitedCount++;
