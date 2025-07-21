@@ -3,9 +3,7 @@
 
 int op_count;
 
-/* Recursive binary search that counts comparisons */
 int binary_search(int arr[], int low, int high, int key) {
-    op_count++;
     if (low > high) {
         return -1;
     }
@@ -20,10 +18,10 @@ int binary_search(int arr[], int low, int high, int key) {
     }
 }
 
-/* Tester & plotter: writes best/worst case counts to separate files */
 void plotter(void) {
     FILE *fb = fopen("binsearch_best.txt",  "a");
     FILE *fw = fopen("binsearch_worst.txt", "a");
+    FILE *fa = fopen("binsearch_avg.txt", "a");
     for (int n = 2; n <= 1024; n *= 2) {
         int *arr = malloc(n * sizeof(int));
         /* Fill with sorted values 1..n */
@@ -38,6 +36,12 @@ void plotter(void) {
         op_count = 0;
         binary_search(arr, 0, n - 1, -1);
         fprintf(fw, "%d\t%d\n", n, op_count);
+
+
+         /* Avg case*/
+        op_count = 0;
+        linear_search(arr, n, rand() % n);
+        fprintf(fa, "%d\t%d\n", n, op_count);
 
         free(arr);
     }
@@ -55,7 +59,7 @@ void tester(void) {
         return;
     }
     int *arr = malloc(n * sizeof(int));
-    
+
     printf("Enter %d elements in increasing order:\n", n);
     for (int i = 0; i < n; ++i) {
         scanf("%d", &arr[i]);

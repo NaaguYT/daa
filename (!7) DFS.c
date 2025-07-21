@@ -9,13 +9,13 @@ void dfs(int n, int start, int parent) {
  	count++;
 	printf("--> %c ", start+65);
 	// print statement only for tester
-   for(int i=0; i<n; i++) {
-  	ordercount++;
-   if(i!=parent && graph[start][i] && visited[i])
- 	cyclic = 1;
-   if(graph[start][i] && visited[i]==0)
- 	dfs(n, i, start);
- }
+        for(int i=0; i<n; i++) {
+                ordercount++;
+                if(i!=parent && graph[start][i] && visited[i])
+                        cyclic = 1;
+                if(graph[start][i] && visited[i]==0)
+                        dfs(n, i, start);
+        }
 }
 void tester()
 {
@@ -75,15 +75,15 @@ void plotter(int k)
     for (int i = 1; i <= 10; i++) {
         v = i;
 
-        
-        if (k == 0) 
-	{  
+
+        if (k == 0)
+	{
             for (int x = 0; x < v; x++)
                 for (int y = 0; y < v; y++)
                     graph[x][y] = (x != y) ? 1 : 0;
-        } 
-	else 
-	{  
+        }
+	else
+	{
             for (int x = 0; x < v; x++)
                 for (int y = 0; y < v; y++)
                     graph[x][y] = 0;

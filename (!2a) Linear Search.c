@@ -3,11 +3,10 @@
 
 int op_count;
 
-/* Sequential (linear) search: returns number of comparisons made */
 int linear_search(int arr[], int n, int key) {
     op_count = 0;
     for (int i = 0; i < n; ++i) {
-        op_count++;
+        op_count++; // count the comparison
         if (arr[i] == key) {
             return op_count;
         }
@@ -15,15 +14,15 @@ int linear_search(int arr[], int n, int key) {
     return op_count;
 }
 
-/* Plotter: writes best-case and worst-case data to separate files */
 void plotter(void) {
     FILE *f_best = fopen("linsearch_best.txt", "a");
     FILE *f_worst = fopen("linsearch_worst.txt", "a");
+    FILE *f_avg = fopen("linsearch_avg.txt", "a");
     srand(time(NULL));
 
     for (int n = 10; n <= 100; n += 10) {
         int *arr = malloc(n * sizeof(int));
-        
+
         /* Fill with random values 0..n-1 */
         for (int i = 0; i < n; ++i) {
             arr[i] = rand() % n;
@@ -39,17 +38,21 @@ void plotter(void) {
         linear_search(arr, n, worst_key);
         fprintf(f_worst, "%d\t%d\n", n, op_count);
 
+        /* Avg case*/
+        int avg_key = rand() % n;
+        linear_search(arr, n, avg_key);
+        fprintf(f_avg, "%d\t%d\n", n, op_count);
+
         free(arr);
     }
 
     fclose(f_best);
     fclose(f_worst);
+    fclose(f_avg);
 }
 
 int main(void) {
-    /* 1. Run the plotter to generate data files */
     plotter();
-    /* 2. Optionally, perform an tester */
     int n;
     printf("Enter number of elements: ");
     scanf("%d", &n);

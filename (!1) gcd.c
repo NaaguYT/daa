@@ -1,14 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define x 10
-#define y 100
-
 float euclid(int m, int n) {
     int r;
     float count = 0;
     while (n) {
-        count++;
+        count++; // count the division
         r = m % n;
         m = n;
         n = r;
@@ -23,9 +20,9 @@ float consec(int m, int n) {
     if (n < min)
         min = n;
     while (1) {
-        count++;
+        count++; // count the division
         if (m % min == 0) {
-            count++;
+            count++; // count the division
             if (n % min == 0)
                 break;
             min -= 1;
@@ -46,7 +43,7 @@ float modified(int m, int n) {
             n = temp;
         }
         m = m - n;
-        count += 1;
+        count++; // count the subtraction
     }
     return count; // m is the GCD
 }
@@ -55,7 +52,7 @@ void analysis(int ch) {
     int m, n, i, j, k;
     float count, maxcount, mincount;
     FILE *fp1, *fp2;
-    for (i = x; i <= y; i += 10) {
+    for (i = 10; i <= 100; i += 10) {
         maxcount = 0;
         mincount = 10000;
         for (j = 2; j <= i; j++) { // To generate the data
@@ -76,8 +73,7 @@ void analysis(int ch) {
                 }
                 if (count > maxcount) // To find the maximum basic operations among all the combinations between 2 to n
                     maxcount = count;
-                if (count < mincount)
-                    // To find the minimum basic operations among all the combinations between 2 to n
+                if (count < mincount) // To find the minimum basic operations among all the combinations between 2 to n
                     mincount = count;
             }
         }

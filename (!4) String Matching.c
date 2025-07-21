@@ -29,7 +29,7 @@ void plotter(void) {
 
     char *text = malloc(1000*sizeof(char));
     for(int i=0;i<1000;i++)
-       str[i]='a';
+       text[i]='a';
     srand(time(NULL));
     for (int i = 10; i <= 1000; i = (i < 100 ? i + 10 : i + 100)) {
         char *pat = malloc(i*sizeof(char));

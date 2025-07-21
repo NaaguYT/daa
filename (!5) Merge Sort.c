@@ -62,8 +62,7 @@ void worst(int arr[], int beg, int end) {
     /* Recurse on each half to create worst-case for their sizes */
     worst(L, 0, n1 - 1);
     worst(R, 0, n2 - 1);
-
-    /* Write them back into arr[beg..end] in two halves */
+    
     for (int i = 0; i < n1; i++) {
         arr[beg + i] = L[i];
     }
@@ -77,7 +76,9 @@ void plotter() {
     FILE *fb = fopen("ms_best.txt",  "a");
     FILE *fw = fopen("ms_worst.txt", "a");
     FILE *fa = fopen("ms_avg.txt",   "a");
+
     srand(time(NULL));
+
     for (int n = 2; n <= 1024; n *= 2) {
         int *arr = malloc(n * sizeof(int));
         /* best: already sorted */

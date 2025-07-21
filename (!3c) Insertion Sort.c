@@ -11,7 +11,7 @@ void insertion_sort(int arr[], int n) {
         /* count one comparison for entering the while */
         while (j >= 0 && (op_count++ && arr[j] > value)) {
             arr[j + 1] = arr[j];
-            --j;
+            j--;
         }
         arr[j + 1] = value;
     }

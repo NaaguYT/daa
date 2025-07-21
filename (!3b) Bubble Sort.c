@@ -6,9 +6,9 @@ int op_count;
 
 int bubble_sort(int arr[], int n) {
     op_count = 0;
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int swapped = 0;
-        for (int j = 0; j < n - i - 1; ++j) {
+        for (int j = 0; j < n - i - 1; j++) {
             op_count++;  /* comparison */
             if (arr[j] > arr[j + 1]) {
                 int tmp = arr[j];
@@ -36,7 +36,7 @@ void plotter(void) {
         bubble_sort(arr, n);
         fprintf(fb, "%d\t%d\n", n, op_count);
 
-        /* Worst case: reverse sorted or  Average case: random  and avg and worst are same*/ 
+        /* Worst case: reverse sorted or  Average case: random  and avg and worst are same*/
         for (int i = 0; i < n; ++i) arr[i] = n - i;
         bubble_sort(arr, n);
         fprintf(fw, "%d\t%d\n", n, op_count);
@@ -45,7 +45,7 @@ void plotter(void) {
         for (int i = 0; i < n; ++i) arr[i] = rand() % n;
         bubble_sort(arr, n);
         fprintf(fa, "%d\t%d\n", n, op_count);
-        
+
         free(arr);
     }
 
@@ -63,7 +63,7 @@ void Tester(void) {
         return;
     }
     int *arr = malloc(n * sizeof(int));
-    
+
     printf("Enter %d array elements:\n", n);
     for (int i = 0; i < n; ++i) {
         scanf("%d", &arr[i]);

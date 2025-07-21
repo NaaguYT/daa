@@ -4,12 +4,11 @@
 
 int op_count;
 
-/* Selection Sort implementation */
 void selection_sort(int arr[], int n) {
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; i++) {
         int min = i;
-        for (int j = i + 1; j < n; ++j) {
-            ++op_count;           /* comparison count */
+        for (int j = i + 1; j < n; j++) {
+            op_count++;           /* comparison count */
             if (arr[j] < arr[min]) {
                 min = j;
             }
@@ -21,8 +20,7 @@ void selection_sort(int arr[], int n) {
     }
 }
 
-/* Tester/Plotter: generates best/worst/avg counts */
-void plotter(void) {
+void plotter() {
     FILE *f = fopen("s.txt", "a");
     srand(time(NULL));
 
@@ -40,7 +38,6 @@ void plotter(void) {
     fclose(f);
 }
 
-/* Tester demonstration */
 void tester(void) {
     int n;
     printf("Enter number of elements: ");
@@ -50,7 +47,7 @@ void tester(void) {
         return;
     }
     int *arr = malloc(n * sizeof(int));
-    
+
     printf("Enter %d elements:\n", n);
     for (int i = 0; i < n; ++i) {
         scanf("%d", &arr[i]);
@@ -67,10 +64,7 @@ void tester(void) {
 }
 
 int main(void) {
-    /* 1) Generate data files for plotting */
     plotter();
-
-    /* 2) Run interactive demo */
     tester();
 
     return 0;
