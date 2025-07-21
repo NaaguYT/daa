@@ -5,27 +5,26 @@ int count;
 
 void creategraph(int n)
 {
-	for(int i=0;i<n;i++)
-	{
-	   for(int j=0;j<n;j++){
-	      if(i==j) matrix[i][j]=0;
-              else matrix[i][j]=rand();
-	  }
- 	}
+        for(int i=0;i<n;i++) {
+                for(int j=0;j<n;j++){
+                        if(i==j)
+                                matrix[i][j]=0;
+                        else
+                                matrix[i][j]=rand();
+                }
+        }
 }
-void Floyd(int n)
-{
-	for (int k = 0; k < n; k++) {
-    	   for (int i = 0; i < n; i++) {
-       		  int temp = matrix[i][k];
-                  for (int j = 0; j < n; j++) {
-            		if (matrix[i][j] > temp) {
-               			count++;
-               		if (temp + matrix[k][j] < matrix[i][j])
-                		matrix[i][j] = temp + matrix[k][j];
+void Floyd(int n) {
+        for (int k = 0; k < n; k++) {
+                for (int i = 0; i < n; i++) {
+                        for (int j = 0; j < n; j++) {
+                                if (matrix[i][j] > matrix[i][k]) {
+                                        count++;
+                                        if (matrix[i][k] + matrix[k][j] < matrix[i][j])
+                                                matrix[i][j] = matrix[i][k] + matrix[k][j];
+                                }
                         }
-                  }  
-           }
+                }
         }
 }
 void tester()

@@ -7,8 +7,9 @@ int graph[100][100],visited[100];
 void dfs(int n, int start, int parent) {
  	visited[start] = 1;
  	count++;
-	printf("--> %c ", start+65);
-	// print statement only for tester
+
+	printf("--> %c ", start+65); // print statement only for tester
+
         for(int i=0; i<n; i++) {
                 ordercount++;
                 if(i!=parent && graph[start][i] && visited[i])
@@ -76,13 +77,13 @@ void plotter(int k)
         v = i;
 
 
-        if (k == 0)
+        if (k == 0) // Worst case
 	{
             for (int x = 0; x < v; x++)
                 for (int y = 0; y < v; y++)
                     graph[x][y] = (x != y) ? 1 : 0;
         }
-	else
+	else // Best case
 	{
             for (int x = 0; x < v; x++)
                 for (int y = 0; y < v; y++)

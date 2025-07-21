@@ -88,10 +88,7 @@ void tester() {
     q.arr = (int *)malloc(n * sizeof(int));
     q.cnt = 0;
 
-    int *inq = (int *)malloc(n * sizeof(int));
-    for (int i = 0; i < n; i++) {
-        inq[i] = 0;
-    }
+    int *inq = (int *)calloc(n, sizeof(int));
 
     Indegree(arr, n, inq, &q);
     SourceRemove(arr, n, inq, &q);

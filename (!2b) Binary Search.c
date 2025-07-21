@@ -8,7 +8,7 @@ int binary_search(int arr[], int low, int high, int key) {
         return -1;
     }
     int mid = (low + high) / 2;
-    op_count++;
+    op_count++; // count the comparison
     if (arr[mid] == key) {
         return mid;
     } else if (key < arr[mid]) {
@@ -40,7 +40,7 @@ void plotter(void) {
 
          /* Avg case*/
         op_count = 0;
-        linear_search(arr, n, rand() % n);
+        binary_search(arr, 0, n - 1, rand() % n);
         fprintf(fa, "%d\t%d\n", n, op_count);
 
         free(arr);

@@ -9,10 +9,10 @@ void warshall(int n)
 		for(int i=0;i<n;i++)
 		{
 			if(matrix[i][k] != 0) {
-            			for(int j = 0; j < n; j++) {
-                			matrix[i][j] = (matrix[i][j] || (matrix[i][k] && matrix[k][j]));
-                			count++;
-            			}
+				for(int j = 0; j < n; j++) {
+					matrix[i][j] = (matrix[i][j] || (matrix[i][k] && matrix[k][j]));
+					count++;
+				}
 			}
 		}
 	}
@@ -46,27 +46,27 @@ void plotter(int k)
 	for(int i=1;i<=10;i++)
 	{
 		int n=i;
-		if(k==0)
+		if(k==0) // Best case: cycle graph
 		{
 			for(int i = 0; i < n; i++)
 			{
-    				for(int j = 0; j < n; j++) matrix[i][j] = 0;
+				for(int j = 0; j < n; j++)
+					matrix[i][j] = 0;
 			}
-			for(int i = 0; i < n - 1; i++) 
+			for(int i = 0; i < n - 1; i++)
 			{
-    				matrix[i][i + 1] = 1;
+				matrix[i][i + 1] = 1;
 			}
 			matrix[n - 1][0] = 1;
 		}
-		if(k==1)
+		if(k==1) 
 		{
 			for(int i = 0; i < n; i++)
 			{
-    				for(int j = 0; j < n; j++) 
-				{
-        				if(i != j) matrix[i][j] = 1;
-        				else matrix[i][j] = 0;
-    				}
+				for(int j = 0; j < n; j++) {
+					if(i != j) matrix[i][j] = 1;
+					else matrix[i][j] = 0;
+				}
 			}
 		}
 		count=0;
@@ -91,10 +91,10 @@ int main()
 		switch(choice)
 		{
 			case 1:tester();
-			       break;
+				break;
 			case 2:for(int i=0;i<2;i++)
-				       plotter(i);
-			       break;
+					plotter(i);
+				break;
 			default:exit(1);
 		}
 	}
