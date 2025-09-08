@@ -6,7 +6,7 @@ void main()
 {
     srand(time(NULL));
     FILE *fp;
-    fp = fopen("prims.dat", "w");
+    fp = fopen("prims.txt", "a");
     int i, j, edges = 0, c = 0; // Initialize 'c' to 0
     int a, b, min, min_cost = 0;
     int cost[50][50], n, visited[50] = {0};
