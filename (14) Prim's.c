@@ -7,11 +7,9 @@ void main()
     srand(time(NULL));
     FILE *fp;
     fp = fopen("prims.txt", "a");
-    int i, j, edges = 0, c = 0; // Initialize 'c' to 0
+    int i, j, edges = 0, count = 0;
     int a, b, min, min_cost = 0;
     int cost[50][50], n, visited[50] = {0};
-
-    // Taking graph as input
     printf("Enter the number of vertices: ");
     scanf("%d", &n);
     printf("Enter cost matrix:\n");
@@ -25,20 +23,19 @@ void main()
         }
     }
 
-    // Finding minimum cost
     visited[0] = 1;
 
     while (edges < n - 1)
     {
         min = 9999;
-        c++;
+        count++;
         for (i = 0; i < n; i++)
         {
-            c++; // Move this line inside the inner loop
             if (visited[i])
             {
                 for (j = 0; j < n; j++)
                 {
+                    count++;
                     if (min > cost[i][j] && !visited[j])
                     {
                         min = cost[i][j];
@@ -56,9 +53,9 @@ void main()
     }
 
     printf("Minimum Cost: %d\n", min_cost);
-    printf("The count for the %d number of vertices is %d\n", n, c);
+    printf("The count for the %d number of vertices is %d\n", n, count);
 
-    fprintf(fp, "%d\t%d\n", n, c);
+    fprintf(fp, "%d\t%d\n", n, count);
     fclose(fp);
 }
 /*output
