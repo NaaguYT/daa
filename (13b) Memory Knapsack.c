@@ -16,21 +16,6 @@ int knap(int n,int m)
 			t[n][m]=max(knap(n-1,m),v[n]+knap(n-1,m-w[n]));
 					return t[n][m];
 	}
-	/*
-	if(n==1)
-	{
-		if(w[n]<=m)
-			return v[n];
-		else
-			return 0;
-	}
-	if(t[n][m]!=-1) return t[n][m];
-	int NotTake=knap(n-1,m);
-	int Take=-1e9;
-	if(w[n]<=m)
-		Take=v[n]+knap(n-1,m-w[n]);
-	return t[n][m]=max(Take,NotTake);*/
-
 }
 void tester()
 {
