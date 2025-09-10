@@ -14,7 +14,8 @@ int knap(int n,int m)
 			t[n][m]=knap(n-1,m);
 		else
 			t[n][m]=max(knap(n-1,m),v[n]+knap(n-1,m-w[n]));
-					return t[n][m];
+
+		return t[n][m];
 	}
 	/*
 	if(n==1)
@@ -71,7 +72,7 @@ void tester()
 		}
 	}
 	printf("\n");
-	
+
 
 }
 void plotter()
