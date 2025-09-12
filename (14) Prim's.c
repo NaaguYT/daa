@@ -2,19 +2,22 @@
 #include <stdlib.h>
 #include <time.h>
 
-int count;
-
 void prims()
 {
-    int i, j, edges = 0;
-    int a, b, min, min_cost = 0;
+    srand(time(NULL));
+    FILE *fp;
+    fp = fopen("prims.txt", "a");
+
+    int i, j, edges = 0, count = 0;
+    int a = -1, b = -1, min, min_cost = 0;
     int cost[50][50], n, visited[50] = {0};
+
     printf("Enter the number of vertices: ");
     scanf("%d", &n);
+
     printf("Enter cost matrix:\n");
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++)
         {
             scanf("%d", &cost[i][j]);
             if (cost[i][j] == 0)
@@ -22,13 +25,13 @@ void prims()
         }
     }
 
-	count = 0;
     visited[0] = 1;
 
     while (edges < n - 1)
     {
         min = 9999;
-        count++;
+        a = b = -1;
+
         for (i = 0; i < n; i++)
         {
             if (visited[i])
@@ -36,7 +39,7 @@ void prims()
                 for (j = 0; j < n; j++)
                 {
                     count++;
-                    if (min > cost[i][j] && !visited[j])
+                    if (!visited[j] && cost[i][j] < min)
                     {
                         min = cost[i][j];
                         a = i;
@@ -46,7 +49,7 @@ void prims()
             }
         }
 
-		if (a == -1 || b == -1)
+        if (a == -1 || b == -1)
         {
             printf("Graph is disconnected! MST not possible.\n");
             fprintf(fp, "%d\tDisconnected\n", n);
@@ -61,31 +64,29 @@ void prims()
     }
 
     printf("Minimum Cost: %d\n", min_cost);
-    printf("The count for the %d number of vertices is %d\n", n, count);
+    printf("The count for %d vertices is %d\n", n, count);
 
     fprintf(fp, "%d\t%d\n", n, count);
+    fclose(fp);
 }
 
 int main()
 {
-    srand(time(NULL));
-    FILE *fp;
-    fp = fopen("prims.txt", "a");
-	int choice;
-	for(;;)
-	{
-		printf("\nEnter the choice:\n1.To Execute\nother to exit\n");
-		scanf("%d",&choice);
-		switch(choice)
-		{
-			case 1:prims();
-			       break;
-			default:exit(1);
-
-		}
-	}
-    fclose(fp);
-	return 0;
+    int choice;
+    for (;;)
+    {
+        printf("\nEnter the choice:\n1. Execute\nOther. Exit\n");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            prims();
+            break;
+        default:
+            exit(0);
+        }
+    }
+    return 0;
 }
 
 /*output
