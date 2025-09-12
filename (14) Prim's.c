@@ -4,11 +4,7 @@
 
 void prims()
 {
-    srand(time(NULL));
-    FILE *fp;
-    fp = fopen("prims.txt", "a");
-
-    int i, j, edges = 0, count = 0;
+   int i, j, edges = 0, count = 0;
     int a = -1, b = -1, min, min_cost = 0;
     int cost[50][50], n, visited[50] = {0};
 
@@ -67,11 +63,14 @@ void prims()
     printf("The count for %d vertices is %d\n", n, count);
 
     fprintf(fp, "%d\t%d\n", n, count);
-    fclose(fp);
 }
 
 int main()
 {
+    srand(time(NULL));
+    FILE *fp;
+    fp = fopen("prims.txt", "a");
+    
     int choice;
     for (;;)
     {
@@ -86,6 +85,7 @@ int main()
             exit(0);
         }
     }
+    fclose(fp);
     return 0;
 }
 
