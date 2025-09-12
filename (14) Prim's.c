@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 
+int count;
+
 void prims()
 {
-    int i, j, edges = 0, count = 0;
+    int i, j, edges = 0;
     int a, b, min, min_cost = 0;
     int cost[50][50], n, visited[50] = {0};
     printf("Enter the number of vertices: ");
@@ -20,6 +22,7 @@ void prims()
         }
     }
 
+	count = 0;
     visited[0] = 1;
 
     while (edges < n - 1)
