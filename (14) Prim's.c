@@ -2,11 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-void main()
+void prims()
 {
-    srand(time(NULL));
-    FILE *fp;
-    fp = fopen("prims.txt", "a");
     int i, j, edges = 0, count = 0;
     int a, b, min, min_cost = 0;
     int cost[50][50], n, visited[50] = {0};
@@ -56,8 +53,30 @@ void main()
     printf("The count for the %d number of vertices is %d\n", n, count);
 
     fprintf(fp, "%d\t%d\n", n, count);
-    fclose(fp);
 }
+
+int main()
+{
+    srand(time(NULL));
+    FILE *fp;
+    fp = fopen("prims.txt", "a");
+	int choice;
+	for(;;)
+	{
+		printf("\nEnter the choice:\n1.To Execute\nother to exit\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:prims();
+			       break;
+			default:exit(1);
+
+		}
+	}
+    fclose(fp);
+	return 0;
+}
+
 /*output
 Enter the number of vertices: 5
 Enter cost matrix:
