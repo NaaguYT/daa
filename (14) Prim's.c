@@ -46,6 +46,14 @@ void prims()
             }
         }
 
+		if (a == -1 || b == -1)
+        {
+            printf("Graph is disconnected! MST not possible.\n");
+            fprintf(fp, "%d\tDisconnected\n", n);
+            fclose(fp);
+            return;
+        }
+
         printf("%c --> %c | Cost: %d\n", a + 65, b + 65, min);
         visited[b] = 1;
         min_cost += min;
