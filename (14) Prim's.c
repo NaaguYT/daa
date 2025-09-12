@@ -32,12 +32,9 @@ void prims()
         min = 9999;
         a = b = -1;
 
-        for (i = 0; i < n; i++)
-        {
-            if (visited[i])
-            {
-                for (j = 0; j < n; j++)
-                {
+        for (i = 0; i < n; i++) {
+            if (visited[i]) {
+                for (j = 0; j < n; j++) {
                     count++;
                     if (!visited[j] && cost[i][j] < min)
                     {

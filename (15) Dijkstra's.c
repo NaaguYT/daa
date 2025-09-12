@@ -28,7 +28,7 @@ void dijkstra(int v) {
         min = 9999;
         for (w = 1; w <= n; w++) {
             cnt++;
-            if (visit[w] == 0 && dist[w] < min) {
+            if (!visit[w] && dist[w] < min) {
                 min = dist[w];
                 u = w;
             }
@@ -42,7 +42,7 @@ void dijkstra(int v) {
 
         for (w = 1; w <= n; w++) {
             cnt++;
-            if (visit[w] == 0) {
+            if (!visit[w]) {
                 if (dist[w] > dist[u] + graph[u][w]) {
                     dist[w] = dist[u] + graph[u][w];
                 }
