@@ -1,0 +1,7 @@
+set title "GCD"
+set xrange[1:100]
+set yrange[1:100]
+set xlabel "Input Size"
+set ylabel "OP Count"
+set style data linespoints
+plot "f1.txt" title "case 1", "f2.txt" title "case 2"
